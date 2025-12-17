@@ -1,0 +1,26 @@
+package com.taskflow.api.model;
+
+import jakarta.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "projects")
+public class Project extends BaseEntity {
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(length = 500)
+    private String description;
+
+    @OneToMany(mappedBy = "project")
+    private List<Task> tasks;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+}
