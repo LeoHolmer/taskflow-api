@@ -9,5 +9,4 @@ public class TaskflowApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TaskflowApiApplication.class, args);
 	}
-
 }
