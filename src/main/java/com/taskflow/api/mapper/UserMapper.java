@@ -3,6 +3,7 @@ package com.taskflow.api.mapper;
 import com.taskflow.api.dto.request.CreateUserRequest;
 import com.taskflow.api.dto.response.UserResponse;
 import com.taskflow.api.model.User;
+import com.taskflow.api.model.enums.Role;
 
 public class UserMapper {
 
@@ -10,20 +11,24 @@ public class UserMapper {
     }
 
     public static User toEntity(CreateUserRequest request) {
-        User user = new User();
-        user.setName(request.getName());
-        user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
-        user.setActive(true);
-        return user;
+        return User.builder()
+                .name(request.getName())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .active(true)
+                .role(Role.USER)
+                .build();
     }
 
     public static UserResponse toResponse(User user) {
-        return new UserResponse(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.isActive()
-        );
+        return UserResponse.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .active(user.isActive())
+                .role(user.getRole().name())
+                .createdAt(user.getCreatedAt())
+                .updatedAt(user.getUpdatedAt())
+                .build();
     }
 }

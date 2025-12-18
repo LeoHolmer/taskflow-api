@@ -1,9 +1,14 @@
 package com.taskflow.api.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 @MappedSuperclass
+@Getter
+@Setter
 public abstract class BaseEntity {
 
     @Id
@@ -16,6 +21,9 @@ public abstract class BaseEntity {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -27,20 +35,11 @@ public abstract class BaseEntity {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
+    public boolean isDeleted() {
+        return deletedAt != null;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public void delete() {
+        this.deletedAt = LocalDateTime.now();
     }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }

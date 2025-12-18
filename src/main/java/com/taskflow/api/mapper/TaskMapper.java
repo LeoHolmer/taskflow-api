@@ -12,27 +12,31 @@ public class TaskMapper {
     }
 
     public static Task toEntity(CreateTaskRequest request, User user, Project project) {
-        Task task = new Task();
-        task.setTitle(request.getTitle());
-        task.setDescription(request.getDescription());
-        task.setStatus(request.getStatus());
-        task.setPriority(request.getPriority());
-        task.setDueDate(request.getDueDate());
-        task.setAssignedUser(user);
-        task.setProject(project);
-        return task;
+        return Task.builder()
+                .title(request.getTitle())
+                .description(request.getDescription())
+                .status(request.getStatus())
+                .priority(request.getPriority())
+                .dueDate(request.getDueDate())
+                .assignedUser(user)
+                .project(project)
+                .build();
     }
 
     public static TaskResponse toResponse(Task task) {
-        return new TaskResponse(
-                task.getId(),
-                task.getTitle(),
-                task.getDescription(),
-                task.getStatus(),
-                task.getPriority(),
-                task.getDueDate(),
-                task.getAssignedUser().getId(),
-                task.getProject().getId()
-        );
+        return TaskResponse.builder()
+                .id(task.getId())
+                .title(task.getTitle())
+                .description(task.getDescription())
+                .status(task.getStatus())
+                .priority(task.getPriority())
+                .dueDate(task.getDueDate())
+                .userId(task.getAssignedUser().getId())
+                .userName(task.getAssignedUser().getName())
+                .projectId(task.getProject().getId())
+                .projectName(task.getProject().getName())
+                .createdAt(task.getCreatedAt())
+                .updatedAt(task.getUpdatedAt())
+                .build();
     }
 }

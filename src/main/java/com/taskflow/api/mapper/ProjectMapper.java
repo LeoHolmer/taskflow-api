@@ -10,17 +10,20 @@ public class ProjectMapper {
     }
 
     public static Project toEntity(CreateProjectRequest request) {
-        Project project = new Project();
-        project.setName(request.getName());
-        project.setDescription(request.getDescription());
-        return project;
+        return Project.builder()
+                .name(request.getName())
+                .description(request.getDescription())
+                .build();
     }
 
     public static ProjectResponse toResponse(Project project) {
-        return new ProjectResponse(
-                project.getId(),
-                project.getName(),
-                project.getDescription()
-        );
+        return ProjectResponse.builder()
+                .id(project.getId())
+                .name(project.getName())
+                .description(project.getDescription())
+                .createdAt(project.getCreatedAt())
+                .updatedAt(project.getUpdatedAt())
+                .taskCount(project.getTasks() != null ? project.getTasks().size() : 0)
+                .build();
     }
 }

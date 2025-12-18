@@ -3,11 +3,19 @@ package com.taskflow.api.model;
 import com.taskflow.api.model.enums.Priority;
 import com.taskflow.api.model.enums.TaskStatus;
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "tasks")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Where(clause = "deleted_at IS NULL")
 public class Task extends BaseEntity {
 
     @Column(nullable = false)
@@ -26,67 +34,11 @@ public class Task extends BaseEntity {
 
     private LocalDate dueDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User assignedUser;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id")
     private Project project;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setStatus(TaskStatus status) {
-        this.status = status;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public User getAssignedUser() {
-        return assignedUser;
-    }
-
-    public void setAssignedUser(User assignedUser) {
-        this.assignedUser = assignedUser;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
 }

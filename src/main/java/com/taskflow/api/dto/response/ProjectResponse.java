@@ -1,26 +1,22 @@
 package com.taskflow.api.dto.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProjectResponse {
 
     private Long id;
     private String name;
     private String description;
-
-    public ProjectResponse(Long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private Integer taskCount;
 }

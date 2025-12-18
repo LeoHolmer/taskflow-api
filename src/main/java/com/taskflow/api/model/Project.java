@@ -1,10 +1,19 @@
 package com.taskflow.api.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.Where;
+
 import java.util.List;
 
 @Entity
 @Table(name = "projects")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Where(clause = "deleted_at IS NULL")
 public class Project extends BaseEntity {
 
     @Column(nullable = false)
@@ -13,30 +22,6 @@ public class Project extends BaseEntity {
     @Column(length = 500)
     private String description;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Task> tasks;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
 }

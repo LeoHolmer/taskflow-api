@@ -1,10 +1,20 @@
 package com.taskflow.api.model;
 
+import com.taskflow.api.model.enums.Role;
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.Where;
+
 import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Where(clause = "deleted_at IS NULL")
 public class User extends BaseEntity {
 
     @Column(nullable = false)
@@ -17,40 +27,13 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(nullable = false)
+    @Builder.Default
     private boolean active = true;
 
-    @OneToMany(mappedBy = "assignedUser")
+    @OneToMany(mappedBy = "assignedUser", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setActive(boolean b) {
-
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 }
