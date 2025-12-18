@@ -310,9 +310,6 @@ Contributions are welcome! To contribute:
 - Keep **documentation** updated
 - Use **conventional commits**
 
-## 📄 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## 👨‍💻 Author
 
@@ -323,6 +320,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 ⭐ If this project is helpful to you, give it a star!
-
-📧 Questions or suggestions? Open an issue or send a PR.</content>
-<parameter name="filePath">/home/leo-holmer/Proyectos/Personales/TaskFlow/README.md
