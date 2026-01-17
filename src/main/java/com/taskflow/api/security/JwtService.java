@@ -91,8 +91,8 @@ public class JwtService {
        ======================== */
 
     private Key getSigningKey() {
-    byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
-    return Keys.hmacShaKeyFor(keyBytes);
-}
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        return Keys.hmacShaKeyFor(keyBytes);
+    }
 
 }
