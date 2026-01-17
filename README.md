@@ -320,3 +320,16 @@ Contributions are welcome! To contribute:
 ---
 
 ⭐ If this project is helpful to you, give it a star!
+
+
+## 💡 Personal Motivation
+
+This project represents my journey into **professional backend development**:
+
+- **Clean Architecture** - Separating concerns helps maintainability and testing
+- **Real Security** - JWT tokens + BCrypt, not just theory
+- **Production-Ready** - Docker, CI/CD, monitoring, proper error handling
+- **Best Practices** - SOLID principles, comprehensive documentation, meaningful tests
+
+**Why This Matters**: Building systems that scale requires understanding tradeoffs (soft delete vs hard delete, DTOs, caching strategies). This project helped me internalize those decisions.
+
