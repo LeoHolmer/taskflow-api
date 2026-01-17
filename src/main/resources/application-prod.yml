@@ -14,7 +14,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate  # En producción usar validate o none
+      ddl-auto: update  # En producción usar validate o none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -28,8 +28,8 @@ spring:
       mode: never
 
 jwt:
-  secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION:86400000}  # 24 horas en prod
+  secret: krras/8WkVCgWZ8FTW4K8I0fXGhglF8tyx7NrRRHCkZii5VWHczjvo7o8or7o74dCwGi0WJg7tMjphc35W9HuA==
+  expiration: 86400000  # 24 horas en prod
 
 logging:
   level:

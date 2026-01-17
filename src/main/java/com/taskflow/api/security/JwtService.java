@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+
+import java.security.Key;
 import java.util.Date;
 import java.util.Map;
 import java.util.function.Function;
@@ -88,8 +90,9 @@ public class JwtService {
        KEY
        ======================== */
 
-    private SecretKey getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
+    private Key getSigningKey() {
+    byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
+    return Keys.hmacShaKeyFor(keyBytes);
+}
+
 }
